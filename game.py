@@ -71,18 +71,25 @@ def _determine_ehhs(ehhs, guess_marked_up):
         # add it to our marked up guess list with the check_type of 'ehh'
         guess_marked_up.append([e, check_types['ehh']])
 
-def checkContainsWord(word):
-    # check if the word can be made using the letters in target
-    # if yes:
-    #   add 1 point per letter
-    # if no:
-    #   return errorNotContained
-    return
+def checkContainsWord(guessed_word):
+    target = 'squalid'
+    count = {}
+    for c in target:
+        if count.get(c):
+            count[c] = count.get(c) + 1
+        else:
+            count[c] = 1
+    # check if guess is in the dictionary of words
+    if guessed_word not in dictionary:
+        raise Exception('Invalid word')
+    # check if guess has a subset of the letters from target
+    guess_count = {}
+    for c in guessed_word:
+        if guess_count.get(c):
+            guess_count[c] = guess_count.get(c) + 1
+        else:
+            guess_count[c] = 1
+    for key in guess_count:
+        if count.get(key) != guess_count[key]: raise Exception('Your guess is not contained in the target word!')
+    return True
 
-
-def error():
-    return
-
-
-def errorNotContained():
-    return
