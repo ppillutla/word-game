@@ -10,11 +10,11 @@ check_types = {
 dictionary = ['router', 'pythons', 'amazing', 'jukebox', 'torment', 'popular', 'trample']
 
 
-def driver(word):
-    if len(word) == 7:
-        checkWord(word)
-    elif 2 < len(word) < 7:
-        checkContainsWord(word)
+def driver(guess):
+    if len(guess) == 7:
+        checkWord(guess)
+    elif 2 < len(guess) < 7:
+        checkContainsWord(guess)
     else:
         raise Exception('Invalid length')
 
