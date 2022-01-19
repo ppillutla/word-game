@@ -36,7 +36,13 @@ def checkWord(guessed_word):
                     guess_marked_up.append([guessed_word[i], check_types['ehh']])
                 else:
                     guess_marked_up.append([guessed_word[i], check_types['naa']])
-
+             
+            # fixme: 
+            # if the guess has a letter duplicated (i.e. 2 Ls) 
+            # and the target has 1 of that duped letter (i.e. 1 L)
+            # then guess_marked_up will show both of those letters as 'ehh'
+            # this should be fixed by only marking one of them as 'ehh'
+            # ... unless the target also contains 2 of them (and they are both not correctly placed)
             return guess_marked_up
     else:
         raise Exception('Word not in dictionary')
