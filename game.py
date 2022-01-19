@@ -47,7 +47,13 @@ def checkWord(guessed_word):
                     ehhs.remove(e)
             # finally, add the remaining ehhs to the guess_marked_up list of tuples:
             for e in ehhs:
-                guess_marked_up.append([guessed_word.index(e), check_types['ehh']])
+                 # todo: I am not sure if the order that this 'ehh' letter gets added to the list matters...
+                guess_marked_up.append([e, check_types['ehh']])
+            # fixme: this still doesn't account for the case where there is a only one of a letter
+            # and the guess had that letter in a 'yer' spot 
+            # but also had that letter somewhere else; 
+            # in this case that letter still gets marked as an ehh because the above logic from line 42 to 51 
+            # does not account for the yers at all 
             return guess_marked_up
     else:
         raise Exception('Word not in dictionary')
