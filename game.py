@@ -38,25 +38,38 @@ def checkWord(guessed_word):
                 else:
                     guess_marked_up.append([guessed_word[i], check_types['naa']])
 
-            # figure out if all the ehhs are in target or if there are duplicate ehhs that are only found once in target
-            target_ = [c for c in target]
-            for e in ehhs:
-                if e in target_:
-                    target_.pop(target_.index(e))
-                else:
-                    ehhs.remove(e)
-            # finally, add the remaining ehhs to the guess_marked_up list of tuples:
-            for e in ehhs:
-                 # todo: I am not sure if the order that this 'ehh' letter gets added to the list matters...
-                guess_marked_up.append([e, check_types['ehh']])
-            # fixme: this still doesn't account for the case where there is a only one of a letter
-            # and the guess had that letter in a 'yer' spot 
-            # but also had that letter somewhere else; 
-            # in this case that letter still gets marked as an ehh because the above logic from line 42 to 51 
-            # does not account for the yers at all 
+            _determine_ehhs(ehhs, guess_marked_up)
             return guess_marked_up
     else:
         raise Exception('Word not in dictionary')
+
+
+def _determine_ehhs(ehhs, guess_marked_up):
+    # figure out if all the ehhs are in target or if there are duplicate ehhs that are only found once in target
+    # clone the target word into char array
+    target_ = [c for c in target]
+    # for each item in our marked up guess
+    for item in guess_marked_up:
+        # if the guessed letter is a yer
+        if item[1] == check_types['yer']:
+            # pop the yer out of the target
+            target_.pop(target_.index(item[0]))
+    # now target_ is left with only ehhs and naas
+    # for each ehh in ehhs
+    for e in ehhs:
+        # if the ehh is in the target
+        if e in target_:
+            # pop the ehh out of the target
+            target_.pop(target_.index(e))
+        else:
+            # if the ehh is not in the target, then we have already found this ehh most likely
+            # (or we screwed something else up and we are just fixing it now...)
+            ehhs.remove(e)
+    # finally, add the remaining ehhs to the guess_marked_up list of tuples:
+    for e in ehhs:
+        # for each remaining ehh letter,
+        # add it to our marked up guess list with the check_type of 'ehh'
+        guess_marked_up.append([e, check_types['ehh']])
 
 def checkContainsWord(word):
     # check if the word can be made using the letters in target
