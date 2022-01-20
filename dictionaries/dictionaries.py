@@ -37,7 +37,3 @@ def main():
     five_letter_words = get_five_letter_words(words)
     six_letter_words = get_six_letter_words(words)
     seven_letter_words = get_seven_letter_words(words)
-
-
-if __name__ == '__main__':
-    main()
