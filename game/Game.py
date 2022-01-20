@@ -1,4 +1,4 @@
-from word-game.Dictionary import Dictionary
+from word-game.dictionaries.Dictionary import Dictionary
 import random
 
 
