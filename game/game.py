@@ -16,16 +16,26 @@ five_letter_words = dictionary.five_letter_words
 six_letter_words = dictionary.six_letter_words
 seven_letter_words = dictionary.seven_letter_words
 
-target = random.choice(seven_letter_words)
+target, target_letter_count = getTargetLetterCount()
 
 def driver(guess):
     if len(guess) == 7:
         checkWord(guess)
-    elif 2 < len(guess) < 7:
+    elif 3 < len(guess) < 7:
         checkContainsWord(guess)
     else:
         raise Exception('Invalid length')
 
+def getTargetLetterCount():
+    target = random.choice(seven_letter_words)
+    
+    count = {}
+    for c in target:
+        if count.get(c):
+            count[c] = count.get(c) + 1
+        else:
+            count[c] = 1
+    return target, count
 
 def checkWord(guessed_word):
     if guessed_word in seven_letter_words:
@@ -80,13 +90,6 @@ def _determine_ehhs(ehhs, guess_marked_up):
         guess_marked_up.append([e, check_types['ehh']])
 
 def checkContainsWord(guessed_word):
-    target = 'squalid'
-    count = {}
-    for c in target:
-        if count.get(c):
-            count[c] = count.get(c) + 1
-        else:
-            count[c] = 1
     # check if guess is in the dictionary of words
     if guessed_word not in dictionary:
         raise Exception('Invalid word')
@@ -98,6 +101,6 @@ def checkContainsWord(guessed_word):
         else:
             guess_count[c] = 1
     for key in guess_count:
-        if count.get(key) != guess_count[key]: raise Exception('Your guess is not contained in the target word!')
+        if target_letter_count.get(key) != guess_count[key]: raise Exception('Your guess is not contained in the target word!')
     return True
 
