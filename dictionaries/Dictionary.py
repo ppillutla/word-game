@@ -23,8 +23,9 @@ def set_four_letter_words(words):
 
 
 class Dictionary(object):
-    words = load_words()
-    four_letter_words = set_four_letter_words(words)
-    five_letter_words = set_five_letter_words(words)
-    six_letter_words = set_six_letter_words(words)
-    seven_letter_words = set_seven_letter_words(words)
+    def __init__(self):
+        words = load_words()
+        self.four_letter_words = set_four_letter_words(words)
+        self.five_letter_words = set_five_letter_words(words)
+        self.six_letter_words = set_six_letter_words(words)
+        self.seven_letter_words = set_seven_letter_words(words)
