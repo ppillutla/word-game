@@ -1,4 +1,8 @@
-import word-game.dictionaries as dicts
+import word-game.dictionaries
+
+# initialize dictionaries
+dictionaries.main()
+
 points = 0
 target = ""  # TODO: pull from a dictionary API
 
