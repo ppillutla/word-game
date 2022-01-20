@@ -1,3 +1,4 @@
+import word-game.dictionaries as dicts
 points = 0
 target = ""  # TODO: pull from a dictionary API
 
@@ -7,8 +8,12 @@ check_types = {
     'yer': 2
 }
 # todo use a real dict eventually, this is a placeholder
-dictionary = ['router', 'pythons', 'amazing', 'jukebox', 'torment', 'popular', 'trample']
+# dictionary = ['router', 'pythons', 'amazing', 'jukebox', 'torment', 'popular', 'trample']
 
+four_letter_words = dicts.four_letter_words(words)
+five_letter_words = dicts.five_letter_words(words)
+six_letter_words = dicts.six_letter_words(words)
+seven_letter_words = dicts.seven_letter_words(words)
 
 def driver(guess):
     if len(guess) == 7:
@@ -20,7 +25,7 @@ def driver(guess):
 
 
 def checkWord(guessed_word):
-    if guessed_word in dictionary:
+    if guessed_word in seven_letter_words:
         guess_marked_up = []
 
         if guessed_word == target:
