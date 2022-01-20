@@ -1,23 +1,22 @@
-import word-game.dictionaries
-
-# initialize dictionaries
-dictionaries.main()
+from word-game.Dictionary import Dictionary
+import random 
 
 points = 0
-target = ""  # TODO: pull from a dictionary API
 
 check_types = {
     'naa': 0,
     'ehh': 1,
     'yer': 2
 }
-# todo use a real dict eventually, this is a placeholder
-# dictionary = ['router', 'pythons', 'amazing', 'jukebox', 'torment', 'popular', 'trample']
 
-four_letter_words = dicts.four_letter_words(words)
-five_letter_words = dicts.five_letter_words(words)
-six_letter_words = dicts.six_letter_words(words)
-seven_letter_words = dicts.seven_letter_words(words)
+# initialize dictionary:
+dictionary = Dictionary
+four_letter_words = dictionary.four_letter_words
+five_letter_words = dictionary.five_letter_words
+six_letter_words = dictionary.six_letter_words
+seven_letter_words = dictionary.seven_letter_words
+
+target = random.choice(seven_letter_words)
 
 def driver(guess):
     if len(guess) == 7:
